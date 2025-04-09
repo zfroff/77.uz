@@ -3,22 +3,112 @@
 import { FormEvent, useState, useEffect, useRef } from "react";
 import { Star } from "lucide-react";
 import Image from "next/image";
+import {
+  Package,
+  Building2,
+  Truck,
+  Laptop,
+  Wrench as Services,
+  ShoppingBag as Fashion,
+  Dumbbell,
+  Palmtree,
+  Home as HomeIcon,
+} from "lucide-react";
 
 interface Category {
   id: string;
   title: string;
+  icon: any;
   count: number;
+  subcategories: { name: string; href: string }[] | null;
 }
 
 const categories: Category[] = [
-  { id: "electronics", title: "Холодильники", count: 150 },
-  { id: "tv", title: "Телевизоры", count: 200 },
-  { id: "headphones", title: "Наушники и аксессуары", count: 300 },
-  { id: "kitchen", title: "Кухонная мебель", count: 180 },
-  { id: "phones", title: "Телефоны", count: 400 },
-  { id: "appliances", title: "Бытовая техника", count: 250 },
-  { id: "microwaves", title: "Микроволновки", count: 120 },
-  { id: "batteries", title: "Аккумуляторы", count: 90 },
+  {
+    id: "pets",
+    title: "Товары для животных",
+    icon: Package,
+    count: 12,
+    subcategories: [
+      { name: "Корма", href: "/category/pets/food" },
+      { name: "Аксессуары", href: "/category/pets/accessories" },
+      { name: "Игрушки", href: "/category/pets/toys" },
+    ],
+  },
+  {
+    id: "real-estate",
+    title: "Недвижимость",
+    icon: Building2,
+    count: 4147,
+    subcategories: null,
+  },
+  {
+    id: "transport",
+    title: "Транспорт",
+    icon: Truck,
+    count: 4147,
+    subcategories: null,
+  },
+  {
+    id: "electronics",
+    title: "Электроника",
+    icon: Laptop,
+    count: 4147,
+    subcategories: [
+      { name: "Смартфоны", href: "/category/electronics/smartphones" },
+      { name: "Аксессуары", href: "/category/electronics/accessories" },
+      {
+        name: "Мобильные телефоны",
+        href: "/category/electronics/mobile-phones",
+      },
+      {
+        name: "Сим карты / тарифы / номера",
+        href: "/category/electronics/sim-cards",
+      },
+      { name: "Прочие телефоны", href: "/category/electronics/other-phones" },
+      {
+        name: "Стационарные телефоны",
+        href: "/category/electronics/landline-phones",
+      },
+      { name: "Ретро телефоны", href: "/category/electronics/retro-phones" },
+      { name: "Телефон лягушки", href: "/category/electronics/frog-phones" },
+    ],
+  },
+  {
+    id: "services",
+    title: "Услуги",
+    icon: Services,
+    count: 4147,
+    subcategories: null,
+  },
+  {
+    id: "fashion",
+    title: "Мода и стиль",
+    icon: Fashion,
+    count: 4147,
+    subcategories: null,
+  },
+  {
+    id: "sports",
+    title: "Спорт",
+    icon: Dumbbell,
+    count: 4147,
+    subcategories: null,
+  },
+  {
+    id: "leisure",
+    title: "Отдых",
+    icon: Palmtree,
+    count: 4147,
+    subcategories: null,
+  },
+  {
+    id: "home",
+    title: "Дом и сад",
+    icon: HomeIcon,
+    count: 4147,
+    subcategories: null,
+  },
 ];
 
 export function Search() {
@@ -84,7 +174,7 @@ export function Search() {
             onChange={(e) => setSearchTerm(e.target.value)}
             onFocus={handleInputFocus}
             placeholder="Что вы ищите?"
-            className="w-full px-4 py-3 border border-[#E0E0E0] rounded-l-md focus:outline-none focus:border-[#000] text-sm"
+            className="w-full px-4 py-3 border border-[#E0E0E0] rounded-l-md focus:outline-none focus:ring-1 focus:ring-[#2680EB] focus:border-[#2680EB] text-sm"
             name="search"
             autoComplete="off"
           />
