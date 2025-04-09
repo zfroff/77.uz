@@ -1,0 +1,10 @@
+<svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background rectangle -->
+  <rect x="8" y="12" width="64" height="56" rx="4" stroke="#CCCCCC" stroke-width="2"/>
+  <!-- Mountain landscape -->
+  <path d="M8 52L24 36L36 48L56 28L72 44V64C72 66.2091 70.2091 68 68 68H12C9.79086 68 8 66.2091 8 64V52Z" fill="#F0F0F0"/>
+  <!-- Sun -->
+  <circle cx="56" cy="24" r="6" fill="#F0F0F0"/>
+  <!-- Text -->
+  <text x="40" y="76" text-anchor="middle" font-size="10" fill="#999999" font-family="system-ui">Нет фото</text>
+</svg> 
