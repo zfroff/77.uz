@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(10, 0)">
+    <!-- Cone base -->
+    <path d="M50 10 L90 110 H10 Z" fill="#FF9533"/>
+    <!-- White stripes -->
+    <path d="M42 40 L78 40 L74 50 H46 Z" fill="white"/>
+    <path d="M38 60 L82 60 L78 70 H42 Z" fill="white"/>
+    <path d="M34 80 L86 80 L82 90 H38 Z" fill="white"/>
+    <!-- Eyes -->
+    <circle cx="45" cy="25" r="4" fill="#333333"/>
+    <circle cx="65" cy="25" r="4" fill="#333333"/>
+  </g>
+</svg> 
