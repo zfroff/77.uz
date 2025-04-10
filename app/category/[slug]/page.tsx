@@ -1,9 +1,10 @@
+"use client";
+
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { Breadcrumb } from "@/components/breadcrumb";
 import { CategoriesSection } from "@/components/categories-section";
 import { SubcategoryList } from "@/components/subcategory-list";
-import CategoryClient from "@/components/CategoryClient";
 
 interface CategoryPageProps {
   params: {
@@ -35,58 +36,29 @@ const categoryData: Record<
   },
 };
 
-export const metadata = ({ params }: { params: { slug: string } }) => {
-  const category = categoryData[params.slug];
-  return {
-    title: category
-      ? `${category.title} - 77.uz`
-      : "Category Not Found - 77.uz",
-    description: category
-      ? `Explore ${category.title} and its subcategories on 77.uz.`
-      : "The category you are looking for does not exist.",
+export default function CategoryPage({ params }: CategoryPageProps) {
+  const category = categoryData[params.slug] || {
+    title: "Категория не найдена",
+    subcategories: null,
   };
-};
-
-export function generateStaticParams() {
-  return Object.keys(categoryData).map((slug) => ({ slug }));
-}
-
-export default function CategoryPage({ params }: { params: { slug: string } }) {
-  const category = categoryData[params.slug];
-
-  if (!category) {
-    return (
-      <div>
-        <Header />
-        <div className="container">
-          <h1>Category Not Found</h1>
-          <p>The category you are looking for does not exist.</p>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
 
   return (
-    <div>
+    <main className="min-h-screen bg-white">
       <Header />
       <Breadcrumb
         items={[
-          { label: "Home", href: "/" },
-          { label: category.title, href: `/category/${params.slug}` },
+          { label: "Main", href: "/" },
+          { label: "Catalog active", href: "#" },
         ]}
       />
-      <h1>{category.title}</h1>
-      {category.subcategories ? (
+      <div className="container mx-auto px-4 py-8">
         <SubcategoryList
           title={category.title}
           subcategories={category.subcategories}
         />
-      ) : (
-        <p>No subcategories available.</p>
-      )}
-      <CategoriesSection />
+        <CategoriesSection />
+      </div>
       <Footer />
-    </div>
+    </main>
   );
 }
