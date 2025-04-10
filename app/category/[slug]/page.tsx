@@ -36,6 +36,18 @@ const categoryData: Record<
   },
 };
 
+export function generateStaticParams() {
+  // Define all possible category slugs that should be pre-rendered
+  return [
+    { slug: "electronics" },
+    { slug: "vehicles" },
+    { slug: "clothing" },
+    { slug: "home" },
+    { slug: "sports" },
+    // Add all other categories you want to pre-render
+  ];
+}
+
 export default function CategoryPage({ params }: CategoryPageProps) {
   const category = categoryData[params.slug] || {
     title: "Категория не найдена",

@@ -148,7 +148,7 @@ export function Search() {
     const regex = new RegExp(`(${searchTerm})`, "gi");
     const parts = title.split(regex);
     return parts.map((part, index) =>
-      part.toLowerCase() === searchTerm.toLowerCase() ? (
+      part.match(new RegExp(searchTerm, "i")) ? (
         <span key={index} className="bg-yellow-200">
           {part}
         </span>

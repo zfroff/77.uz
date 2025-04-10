@@ -2,13 +2,17 @@ import type React from "react";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 
-export const metadata = {
-  title: "77.uz",
-  description: "Доска объявлений в Узбекистане",
-  generator: "v0.dev",
+export const metadata: Metadata = {
+  title: "77.uz - Доска объявлений",
+  description:
+    "Marketplace платформа в Узбекистане для покупки и продажи товаров",
+  keywords: ["marketplace", "uzbekistan", "доска объявлений", "объявления"],
+  authors: [{ name: "77.uz" }],
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
@@ -17,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang="ru">
       <body className={`${inter.className} antialiased`}>
         <ThemeProvider
           attribute="class"
@@ -31,5 +35,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-import "./globals.css";
