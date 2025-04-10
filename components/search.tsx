@@ -143,6 +143,21 @@ export function Search() {
     }
   }, [searchTerm]);
 
+  const highlightMatch = (title: string, searchTerm: string) => {
+    if (!searchTerm) return title;
+    const regex = new RegExp(`(${searchTerm})`, "gi");
+    const parts = title.split(regex);
+    return parts.map((part, index) =>
+      part.toLowerCase() === searchTerm.toLowerCase() ? (
+        <span key={index} className="bg-yellow-200">
+          {part}
+        </span>
+      ) : (
+        part
+      )
+    );
+  };
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     // Add search logic here
@@ -174,10 +189,19 @@ export function Search() {
             onChange={(e) => setSearchTerm(e.target.value)}
             onFocus={handleInputFocus}
             placeholder="Что вы ищите?"
-            className="w-full px-4 py-3 border border-[#E0E0E0] rounded-l-md focus:outline-none focus:ring-1 focus:ring-[#2680EB] focus:border-[#2680EB] text-sm"
+            className="w-full px-4 py-3 border border-[#E0E0E0] rounded-l-md focus:outline-none focus:border-[#000] text-sm"
             name="search"
             autoComplete="off"
           />
+          {searchTerm && (
+            <button
+              type="button"
+              onClick={() => setSearchTerm("")}
+              className="absolute right-20 top-1/2 transform -translate-x-10 -translate-y-1/2 text-gray-500 hover:text-black"
+            >
+              ×
+            </button>
+          )}
           <button
             type="submit"
             className="bg-[#1A1A1A] text-white px-8 py-3 rounded-r-md hover:bg-[#333333] transition-colors text-sm"
@@ -205,7 +229,9 @@ export function Search() {
                 className="w-full px-4 py-2 text-left hover:bg-[#F5F5F5] flex items-center gap-2"
               >
                 <Star className="w-4 h-4 text-yellow-400" />
-                <span className="text-sm">{category.title}</span>
+                <span className="text-sm">
+                  {highlightMatch(category.title, searchTerm)}
+                </span>
               </button>
             ))
           ) : (

@@ -62,7 +62,7 @@ export function Footer() {
             Доска объявлений
           </Link>
           <Link
-            href="#"
+            href="../terms-of-use"
             className="text-[#333333] hover:text-[#2680EB] transition-colors duration-200 flex items-center gap-2 group"
           >
             <div className="w-5 h-5 text-[#2680EB]">

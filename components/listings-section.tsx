@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Listing {
   id: string;
@@ -16,6 +18,10 @@ interface Listing {
 }
 
 export function ListingsSection() {
+  const [visibleProducts, setVisibleProducts] = useState(16);
+  const productsPerPage = 16;
+  const [isLoading, setIsLoading] = useState(false);
+
   // This would typically come from an API
   const listings: Listing[] = [
     {
@@ -194,7 +200,348 @@ export function ListingsSection() {
       timestamp: "Вчера, 19:20",
       phone: "+998 71 200 70 07",
     },
+    {
+      id: "17",
+      title: "Sony WH-1000XM5",
+      image:
+        "https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?q=80&w=1000&auto=format&fit=crop",
+      price: 3200000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "18",
+      title: "iPad Pro 12.9 M2",
+      image:
+        "https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?q=80&w=1000&auto=format&fit=crop",
+      price: 18500000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "19",
+      title: "Canon EOS R5",
+      image:
+        "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
+      price: 42000000,
+      currency: "UZS",
+      location: "г. Самарканд",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "20",
+      title: "Rolex Submariner",
+      image:
+        "https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1000&auto=format&fit=crop",
+      price: 85000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "21",
+      title: "Tesla Model 3",
+      image:
+        "https://images.unsplash.com/photo-1560958089-b8a1929cea89?q=80&w=1000&auto=format&fit=crop",
+      price: 450000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "22",
+      title: "Gaming PC RTX 4090",
+      image:
+        "https://images.unsplash.com/photo-1587202372634-32705e3bf49c?q=80&w=1000&auto=format&fit=crop",
+      price: 35000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "23",
+      title: "Hermès Birkin Bag",
+      image:
+        "https://images.unsplash.com/photo-1584917865442-de89df76afd3?q=80&w=1000&auto=format&fit=crop",
+      price: 95000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "24",
+      title: "Yamaha Grand Piano",
+      image:
+        "https://images.unsplash.com/photo-1520523839897-bd0b52f945a0?q=80&w=1000&auto=format&fit=crop",
+      price: 125000000,
+      currency: "UZS",
+      location: "г. Самарканд",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "25",
+      title: "Leica M11",
+      image:
+        "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
+      price: 85000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "26",
+      title: "Bang & Olufsen Beolab 90",
+      image:
+        "https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=1000&auto=format&fit=crop",
+      price: 65000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "27",
+      title: "Trek Madone SLR",
+      image:
+        "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=1000&auto=format&fit=crop",
+      price: 28000000,
+      currency: "UZS",
+      location: "г. Самарканд",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "28",
+      title: "Omega Speedmaster",
+      image:
+        "https://images.unsplash.com/photo-1524805444758-089113d48a6d?q=80&w=1000&auto=format&fit=crop",
+      price: 45000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "29",
+      title: "Dyson V15 Detect",
+      image:
+        "https://images.unsplash.com/photo-1616628188859-7b11abb57b5e?q=80&w=1000&auto=format&fit=crop",
+      price: 8500000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "30",
+      title: "Samsung QN900B Neo QLED",
+      image:
+        "https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?q=80&w=1000&auto=format&fit=crop",
+      price: 25000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "31",
+      title: "Bose QuietComfort Ultra",
+      image:
+        "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop",
+      price: 4200000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "32",
+      title: "Mac Studio M2 Ultra",
+      image:
+        "https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?q=80&w=1000&auto=format&fit=crop",
+      price: 85000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "33",
+      title: "Garmin Fenix 7X",
+      image:
+        "https://images.unsplash.com/photo-1579586337278-3befd40fd17a?q=80&w=1000&auto=format&fit=crop",
+      price: 5800000,
+      currency: "UZS",
+      location: "г. Самарканд",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "34",
+      title: "Sonos Arc",
+      image:
+        "https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=1000&auto=format&fit=crop",
+      price: 4200000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "35",
+      title: "Nintendo Switch OLED",
+      image:
+        "https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?q=80&w=1000&auto=format&fit=crop",
+      price: 3200000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "36",
+      title: "DJI Mini 3 Pro",
+      image:
+        "https://images.unsplash.com/photo-1473968512647-3e447244af8f?q=80&w=1000&auto=format&fit=crop",
+      price: 8500000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "37",
+      title: "Kindle Oasis",
+      image:
+        "https://images.unsplash.com/photo-1592496431122-2349e0fbc666?q=80&w=1000&auto=format&fit=crop",
+      price: 2800000,
+      currency: "UZS",
+      location: "г. Самарканд",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "38",
+      title: "GoPro Hero 11 Black",
+      image:
+        "https://images.unsplash.com/photo-1575732752612-33c45d0b2d65?q=80&w=1000&auto=format&fit=crop",
+      price: 4200000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "39",
+      title: "Microsoft Surface Laptop Studio",
+      image:
+        "https://images.unsplash.com/photo-1625246333195-78d9c38ad449?q=80&w=1000&auto=format&fit=crop",
+      price: 25000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "40",
+      title: "Sony A7 IV",
+      image:
+        "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
+      price: 28000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "41",
+      title: "Apple Vision Pro",
+      image:
+        "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=1000&auto=format&fit=crop",
+      price: 35000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "42",
+      title: "Brompton P Line",
+      image:
+        "https://images.unsplash.com/photo-1532298229144-0ec0c57515c7?q=80&w=1000&auto=format&fit=crop",
+      price: 8500000,
+      currency: "UZS",
+      location: "г. Самарканд",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "43",
+      title: "Hasselblad X2D",
+      image:
+        "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
+      price: 95000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "44",
+      title: "Meta Quest 3",
+      image:
+        "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=1000&auto=format&fit=crop",
+      price: 4200000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "45",
+      title: "Steam Deck OLED",
+      image:
+        "https://images.unsplash.com/photo-1614680376408-81e91ffe3db7?q=80&w=1000&auto=format&fit=crop",
+      price: 5800000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
+    {
+      id: "46",
+      title: "Fujifilm GFX 100S",
+      image:
+        "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1000&auto=format&fit=crop",
+      price: 85000000,
+      currency: "UZS",
+      location: "г. Ташкент",
+      timestamp: "Вчера, 19:20",
+      phone: "+998 71 200 70 07",
+    },
   ];
+
+  const handleLoadMore = () => {
+    setIsLoading(true);
+    setVisibleProducts((prev) =>
+      Math.min(prev + productsPerPage, listings.length)
+    );
+    // Simulate a small delay for the animation
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 300);
+  };
 
   return (
     <section className="bg-[#F7F8FA] py-12">
@@ -207,104 +554,132 @@ export function ListingsSection() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {listings.map((listing) => (
-            <div
-              key={listing.id}
-              className="bg-white rounded-xl overflow-hidden border border-gray-100 group hover:shadow-md transition-shadow duration-200"
-            >
-              <div className="relative aspect-square">
-                <Image
-                  src={listing.image || "/icons/no-image.svg"}
-                  alt={listing.title}
-                  fill
-                  className={`object-${
-                    listing.image ? "cover" : "contain"
-                  } bg-[#F7F8FA]`}
-                  onError={(e) => {
-                    const img = e.target as HTMLImageElement;
-                    img.src = "/icons/no-image.svg";
-                    img.className = img.className.replace(
-                      "object-cover",
-                      "object-contain"
-                    );
-                  }}
-                />
-                <button
-                  type="button"
-                  className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center transition-colors hover:bg-gray-50"
-                >
-                  <Heart className="w-5 h-5 text-[#666666]" />
-                </button>
-              </div>
-              <div className="p-3">
-                <div className="inline-block px-2 py-1 bg-[#F7F8FA] rounded text-xs text-[#666666] mb-2">
-                  {listing.location}
-                </div>
-                <Link
-                  href={`/listings/${listing.id}`}
-                  className="block text-sm font-medium text-black hover:text-[#2680EB] transition-colors line-clamp-2 mb-2"
-                >
-                  {listing.title}
-                </Link>
-                <div className="text-xs text-[#666666] mb-3">
-                  {listing.timestamp}
-                </div>
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="text-xs text-[#666666]">{listing.phone}</div>
+          <AnimatePresence>
+            {listings.slice(0, visibleProducts).map((listing, index) => (
+              <motion.div
+                key={listing.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.3,
+                  delay:
+                    index >= visibleProducts - productsPerPage
+                      ? (index - (visibleProducts - productsPerPage)) * 0.05
+                      : 0,
+                }}
+                className="bg-white rounded-xl overflow-hidden border border-gray-100 group hover:shadow-md transition-shadow duration-200"
+              >
+                <div className="relative aspect-square">
+                  <Image
+                    src={listing.image || "/icons/no-image.svg"}
+                    alt={listing.title}
+                    fill
+                    className={`object-${
+                      listing.image ? "cover" : "contain"
+                    } bg-[#F7F8FA]`}
+                    onError={(e) => {
+                      const img = e.target as HTMLImageElement;
+                      img.src = "/icons/no-image.svg";
+                      img.className = img.className.replace(
+                        "object-cover",
+                        "object-contain"
+                      );
+                    }}
+                  />
                   <button
                     type="button"
-                    className="w-4 h-4 rounded bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+                    className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center transition-colors hover:bg-gray-50"
                   >
-                    <svg
-                      width="12"
-                      height="12"
-                      viewBox="0 0 12 12"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="text-[#666666]"
-                    >
-                      <path
-                        d="M10.5 8.5L8.5 10.5M1.5 1.5H4.5V4.5H1.5V1.5ZM7.5 1.5H10.5V4.5H7.5V1.5ZM1.5 7.5H4.5V10.5H1.5V7.5Z"
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
+                    <Heart className="w-5 h-5 text-[#666666]" />
                   </button>
                 </div>
-                <div className="text-lg font-bold">
-                  {listing.price.toLocaleString()}{" "}
-                  <span className="text-[#2680EB]">{listing.currency}</span>
+                <div className="p-3">
+                  <div className="inline-block px-2 py-1 bg-[#F7F8FA] rounded text-xs text-[#666666] mb-2">
+                    {listing.location}
+                  </div>
+                  <Link
+                    href={`/listings/${listing.id}`}
+                    className="block text-sm font-medium text-black hover:text-[#2680EB] transition-colors line-clamp-2 mb-2"
+                  >
+                    {listing.title}
+                  </Link>
+                  <div className="text-xs text-[#666666] mb-3">
+                    {listing.timestamp}
+                  </div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="text-xs text-[#666666]">
+                      {listing.phone}
+                    </div>
+                    <button
+                      type="button"
+                      className="w-4 h-4 rounded bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition-colors"
+                    >
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 12 12"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="text-[#666666]"
+                      >
+                        <path
+                          d="M10.5 8.5L8.5 10.5M1.5 1.5H4.5V4.5H1.5V1.5ZM7.5 1.5H10.5V4.5H7.5V1.5ZM1.5 7.5H4.5V10.5H1.5V7.5Z"
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <div className="text-lg font-bold">
+                    {listing.price.toLocaleString()}{" "}
+                    <span className="text-[#2680EB]">{listing.currency}</span>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </motion.div>
+            ))}
+          </AnimatePresence>
         </div>
 
-        <div className="flex justify-center mt-8">
-          <button
-            type="button"
-            className="h-12 px-6 rounded-full bg-[#EAEDF0] text-[#333333] font-medium hover:bg-gray-100 transition-colors inline-flex items-center gap-2 border border-[#CCC] "
-          >
-            Загрузить больше
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 16 16"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="relative top-[1px]"
+        {visibleProducts < listings.length && (
+          <div className="flex justify-center mt-8">
+            <motion.button
+              onClick={handleLoadMore}
+              type="button"
+              className="h-12 px-6 rounded-full bg-[#EAEDF0] text-[#333333] font-medium hover:bg-gray-100 transition-colors inline-flex items-center gap-2 border border-[#CCC]"
+              whileTap={{ scale: 0.95 }}
+              disabled={isLoading}
             >
-              <path
-                d="M4 6L8 10L12 6"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
-        </div>
+              {isLoading ? (
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  className="w-5 h-5 border-2 border-[#333333] border-t-transparent rounded-full"
+                />
+              ) : (
+                <>
+                  Загрузить больше
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="relative top-[1px]"
+                  >
+                    <path
+                      d="M4 6L8 10L12 6"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </>
+              )}
+            </motion.button>
+          </div>
+        )}
       </div>
     </section>
   );
