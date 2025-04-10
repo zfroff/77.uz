@@ -14,9 +14,8 @@ import {
   Palmtree,
   Home as HomeIcon,
 } from "lucide-react";
-import { GetStaticProps } from "next";
 
-interface Category {
+export interface Category {
   id: string;
   title: string;
   icon: any;
@@ -112,7 +111,7 @@ const categories: Category[] = [
   },
 ];
 
-const fetchCategoryBySlug = async (slug: string) => {
+export const fetchCategoryBySlug = async (slug: string) => {
   // Replace this with your actual data fetching logic
   const category = categories.find((cat) => cat.id === slug); // Example logic
   return category || null; // Return null if not found
@@ -266,21 +265,3 @@ export function Search() {
     </>
   );
 }
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  if (!params || !params.slug) {
-    return {
-      notFound: true, // Return a 404 page if slug is not provided
-    };
-  }
-
-  // Ensure params.slug is a string
-  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
-
-  const category = await fetchCategoryBySlug(slug); // Fetch category data based on slug
-  return {
-    props: {
-      category,
-    },
-  };
-};
