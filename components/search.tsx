@@ -15,7 +15,7 @@ import {
   Home as HomeIcon,
 } from "lucide-react";
 
-export interface Category {
+interface Category {
   id: string;
   title: string;
   icon: any;
@@ -110,12 +110,6 @@ const categories: Category[] = [
     subcategories: null,
   },
 ];
-
-export const fetchCategoryBySlug = async (slug: string) => {
-  // Replace this with your actual data fetching logic
-  const category = categories.find((cat) => cat.id === slug); // Example logic
-  return category || null; // Return null if not found
-};
 
 export function Search() {
   const [searchTerm, setSearchTerm] = useState("");
