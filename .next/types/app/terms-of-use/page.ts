@@ -1,4 +1,4 @@
-// File: C:\Users\shayk\Downloads\77uz-marketplace\app\terms-of-use\page.tsx
+// File: /home/user/77.uz/app/terms-of-use/page.tsx
 import * as entry from '../../../../app/terms-of-use/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
